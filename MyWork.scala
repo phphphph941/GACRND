@@ -40,17 +40,7 @@ object MyWork {
     sparkConf.set("spark.sql.warehouse.dir", "/user/hive/warehouse")
     sparkConf.set("hive.metastore.uris", "thrift://master:9083")
     val sparkSession = SparkSession.builder().config(sparkConf).enableHiveSupport().getOrCreate()
-//    HiveUtil.openDynamicPartition(sparkSession) //开启动态分区
-//    HiveUtil.setMaxpartitions(sparkSession) //设置最大分区数
-//    HiveUtil.openCompression(sparkSession) //开启压缩
-//    HiveUtil.useSnappyCompression(sparkSession) //使用snappy压缩
-//     执行一些简单的 Hive 查询
-//    val query = "SELECT * FROM default.my_table"
-////    val query = "show tables"
-//    val df: DataFrame = sparkSession.sql(query)
-//
-//    // 显示结果
-//    df.show()
+
 
 
     val callRecords: DStream[Array[String]] = valueDStream.map(_.split(" "))
@@ -100,24 +90,6 @@ object MyWork {
           resultDF.write.mode("append").saveAsTable("default.lossCallCountByHour")
         }
       }
-
-//    val windowDuration = Seconds(10)
-//    val slideDuration = Seconds(3)
-//
-//    val callRecordsWindow = callRecords.window(windowDuration, slideDuration)
-//
-//    callRecordsWindow
-//      .filter(fields => fields(13) == "LOSS_CALL")
-//      .count()
-//      .foreachRDD { rdd =>
-//        if (!rdd.isEmpty()) {
-//          val lossCallCount = rdd.collect().head
-//          val resultDF = sparkSession.createDataFrame(Seq(("Loss Call Count", lossCallCount)))
-//            .toDF("Metric", "Count")
-//          resultDF.write.mode("append").saveAsTable("your_database.your_table")
-//        }
-//      }
-
 
 
 
