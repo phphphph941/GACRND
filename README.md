@@ -1,2 +1,2 @@
 # GACRND
-GACRND笔试题目
+GACRND题目
